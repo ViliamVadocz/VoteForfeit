@@ -15,6 +15,8 @@ public class VoteForfeit
     private const string messagePrefix = "<color=orange><b>VoteForfeit</b></color>";
     private const string helpMessage = $"{messagePrefix} commands:\n"
         + "* <b>/forfeit</b> (/ff) - Vote to forfeit";
+    private const string redTeamText = $"<color=red><b>RED</b></color>";
+    private const string blueTeamText = $"<color=blue><b>BLUE</b></color>";
 
 
     private static Dictionary<FixedString32Bytes, DateTime> votes = [];
@@ -54,13 +56,16 @@ public class VoteForfeit
             int needed = teammates.Count - 1;
 
             int goalDeficit;
+            string teamText;
             switch (team)
             {
                 case PlayerTeam.Red:
                     goalDeficit = gameState.BlueScore - gameState.RedScore;
+                    teamText = redTeamText;
                     break;
                 case PlayerTeam.Blue:
                     goalDeficit = gameState.RedScore - gameState.BlueScore;
+                    teamText = blueTeamText;
                     break;
                 default:
                     uiChat.Server_SendClientSystemChatMessage($"{messagePrefix} You must be in a team to forfeit.", clientId);
@@ -91,7 +96,7 @@ public class VoteForfeit
 
             if (votes.Count >= needed)
             {
-                uiChat.Server_SendSystemChatMessage($"{messagePrefix} {team} has forfeited the match.");
+                uiChat.Server_SendSystemChatMessage($"{messagePrefix} {teamText} has forfeited the match.");
                 votes.Clear();
                 gameManager.Server_GameOver();
             }
