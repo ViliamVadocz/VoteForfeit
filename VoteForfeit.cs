@@ -68,12 +68,14 @@ public class VoteForfeit
                     teamText = blueTeamText;
                     break;
                 default:
+                    Plugin.Log.LogDebug($"{clientId} tried to forfeit, but they were not on a team.");
                     uiChat.Server_SendClientSystemChatMessage($"{messagePrefix} You must be in a team to forfeit.", clientId);
                     return;
             }
 
             if (goalDeficit < minGoalDeficit)
             {
+                Plugin.Log.LogDebug($"{clientId} tried to forfeit, but the goal deficit was not large enough: {goalDeficit}<{minGoalDeficit}.");
                 uiChat.Server_SendClientSystemChatMessage(
                     $"{messagePrefix} You must be losing by at least {minGoalDeficit} goals to forfeit.",
                     clientId
@@ -96,16 +98,19 @@ public class VoteForfeit
 
             if (votes.Count >= needed)
             {
+                Plugin.Log.LogDebug($"Forfeit vote passed.");
                 uiChat.Server_SendSystemChatMessage($"{messagePrefix} {teamText} has forfeited the match.");
                 votes.Clear();
                 gameManager.Server_GameOver();
             }
             else if (!alreadyVoted)
             {
+                Plugin.Log.LogDebug($"Forfeit vote in progress [{votes.Count}/{needed}].");
                 uiChat.Server_SendSystemChatMessage($"{messagePrefix} Vote <b>forfeit</b> in progress ({votes.Count}/{needed}).");
             }
             else
             {
+                Plugin.Log.LogDebug($"{clientId} tried to forfeit, but they already voted recently.");
                 uiChat.Server_SendClientSystemChatMessage($"{messagePrefix} You already recently voted to forfeit.", clientId);
             }
         }
@@ -129,6 +134,7 @@ public class VoteForfeit
 
             if (votes.Count > 0 && goalDifference < minGoalDeficit)
             {
+                Plugin.Log.LogDebug($"Forfeit vote cancelled because the goal difference fell below the threshold.");
                 uiChat.Server_SendSystemChatMessage($"{messagePrefix} Cancelling <b>forfeit</b> vote.");
                 votes.Clear();
             }
