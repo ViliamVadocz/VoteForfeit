@@ -110,4 +110,28 @@ public class VoteForfeit
             }
         }
     }
+
+    [HarmonyPatch(typeof(UIChatController), nameof(UIChatController.Event_OnGoalScored))]
+    public static class UIChatControllerEventOnGoalScoredPatch
+    {
+        [HarmonyPrefix]
+        public static void Event_OnGoalScored(
+            Il2CppSystem.Collections.Generic.Dictionary<string, Il2CppSystem.Object> message)
+        {
+            GameManager gameManager = NetworkBehaviourSingleton<GameManager>.Instance;
+            UIChat uiChat = NetworkBehaviourSingleton<UIChat>.Instance;
+
+            if (gameManager == null) return;
+            if (uiChat == null) return;
+
+            GameState gameState = gameManager.GameState.Value;
+            int goalDifference = Math.Abs(gameState.BlueScore - gameState.RedScore);
+
+            if (votes.Count > 0 && goalDifference < minGoalDeficit)
+            {
+                uiChat.Server_SendSystemChatMessage($"{messagePrefix} Cancelling <b>forfeit</b> vote.");
+                votes.Clear();
+            }
+        }
+    }
 }
