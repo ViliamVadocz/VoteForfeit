@@ -78,10 +78,17 @@ public class VoteForfeit
 
             // Requirements passed, add vote.
             votes = votes
-                .Where(pair => now.Subtract(pair.Value).Seconds < timeoutSeconds)
+                .Where(pair =>
+                {
+                    bool recent = now.Subtract(pair.Value).Seconds < timeoutSeconds;
+                    Player player = playerManager.GetPlayerBySteamId(pair.Key);
+                    bool onTheTeam = player != null && player.Team.Value == team;
+                    return recent && onTheTeam;
+                })
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
             bool alreadyVoted = votes.ContainsKey(steamId);
             votes[steamId] = now;
+
             if (votes.Count >= needed)
             {
                 uiChat.Server_SendSystemChatMessage($"{messagePrefix} {team} has forfeited the match.");
