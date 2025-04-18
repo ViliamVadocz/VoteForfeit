@@ -55,6 +55,19 @@ public class VoteForfeit
             Il2CppSystem.Collections.Generic.List<Player> teammates = playerManager.GetPlayersByTeam(team);
             int needed = teammates.Count - 1;
 
+            // Check for valid game phase.
+            if (gameState.Phase is GamePhase.None or GamePhase.Warmup or GamePhase.GameOver)
+            {
+                Plugin.Log.LogDebug($"{clientId} tried to forfeit, but the game phase was {gameState.Phase}.");
+                uiChat.Server_SendClientSystemChatMessage(
+                    $"{messagePrefix} You cannot vote when there is no match.",
+                    clientId
+                );
+                votes.Clear(); // just in case
+                return;
+            }
+
+            // Check if on a team.
             int goalDeficit;
             string teamText;
             switch (team)
@@ -73,6 +86,7 @@ public class VoteForfeit
                     return;
             }
 
+            // Check goal deficit.
             if (goalDeficit < minGoalDeficit)
             {
                 Plugin.Log.LogDebug($"{clientId} tried to forfeit, but the goal deficit was not large enough: {goalDeficit}<{minGoalDeficit}.");
