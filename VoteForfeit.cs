@@ -43,7 +43,7 @@ public class VoteForfeit
             string command = message["command"].ToString().ToLower();
             ulong clientId = (ulong)Il2CppSystem.Convert.ToInt64(message["clientId"]);
 
-            if (command.Equals("/help")) { uiChat.Server_SendClientSystemChatMessage(helpMessage, clientId); return; }
+            if (command.Equals("/help")) { uiChat.Server_SendSystemChatMessage(helpMessage, clientId); return; }
             if (!(command.Equals("/forfeit") || command.Equals("/ff"))) return;
 
             DateTime now = DateTime.Now;
@@ -59,7 +59,7 @@ public class VoteForfeit
             if (gameState.Phase is GamePhase.None or GamePhase.Warmup or GamePhase.GameOver)
             {
                 Plugin.Log.LogDebug($"{clientId} tried to forfeit, but the game phase was {gameState.Phase}.");
-                uiChat.Server_SendClientSystemChatMessage(
+                uiChat.Server_SendSystemChatMessage(
                     $"{messagePrefix} You cannot vote when there is no match.",
                     clientId
                 );
@@ -82,7 +82,7 @@ public class VoteForfeit
                     break;
                 default:
                     Plugin.Log.LogDebug($"{clientId} tried to forfeit, but they were not on a team.");
-                    uiChat.Server_SendClientSystemChatMessage($"{messagePrefix} You must be in a team to forfeit.", clientId);
+                    uiChat.Server_SendSystemChatMessage($"{messagePrefix} You must be in a team to forfeit.", clientId);
                     return;
             }
 
@@ -90,7 +90,7 @@ public class VoteForfeit
             if (goalDeficit < minGoalDeficit)
             {
                 Plugin.Log.LogDebug($"{clientId} tried to forfeit, but the goal deficit was not large enough: {goalDeficit}<{minGoalDeficit}.");
-                uiChat.Server_SendClientSystemChatMessage(
+                uiChat.Server_SendSystemChatMessage(
                     $"{messagePrefix} You must be losing by at least {minGoalDeficit} goals to forfeit.",
                     clientId
                 );
@@ -125,7 +125,7 @@ public class VoteForfeit
             else
             {
                 Plugin.Log.LogDebug($"{clientId} tried to forfeit, but they already voted recently.");
-                uiChat.Server_SendClientSystemChatMessage($"{messagePrefix} You already recently voted to forfeit.", clientId);
+                uiChat.Server_SendSystemChatMessage($"{messagePrefix} You already recently voted to forfeit.", clientId);
             }
         }
     }
