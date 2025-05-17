@@ -25,16 +25,18 @@ public class VoteForfeit
     public static class UIChatControllerEventServerOnChatCommandPatch
     {
         [HarmonyPrefix]
-        public static void Event_Server_OnChatCommand_Patch(
+        public static void Event_Server_OnChatCommand(
+            UIChatController __instance,
             Il2CppSystem.Collections.Generic.Dictionary<string, Il2CppSystem.Object> message)
         {
+            if (__instance == null) return;
             if (message == null) return;
             if (!message.ContainsKey("command")) return;
             if (!message.ContainsKey("clientId")) return;
 
             PlayerManager playerManager = NetworkBehaviourSingleton<PlayerManager>.Instance;
             GameManager gameManager = NetworkBehaviourSingleton<GameManager>.Instance;
-            UIChat uiChat = NetworkBehaviourSingleton<UIChat>.Instance;
+            UIChat uiChat = __instance.uiChat;
 
             if (playerManager == null) return;
             if (gameManager == null) return;
@@ -135,10 +137,13 @@ public class VoteForfeit
     {
         [HarmonyPrefix]
         public static void Event_OnGoalScored(
+            UIChatController __instance,
             Il2CppSystem.Collections.Generic.Dictionary<string, Il2CppSystem.Object> message)
         {
+            if (__instance == null) return;
+
             GameManager gameManager = NetworkBehaviourSingleton<GameManager>.Instance;
-            UIChat uiChat = NetworkBehaviourSingleton<UIChat>.Instance;
+            UIChat uiChat = __instance.uiChat;
 
             if (gameManager == null) return;
             if (uiChat == null) return;
