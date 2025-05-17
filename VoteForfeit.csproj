@@ -31,9 +31,6 @@
     <Reference Include="com.rlabrecque.steamworks.net">
       <HintPath>lib\com.rlabrecque.steamworks.net.dll</HintPath>
     </Reference>
-    <Reference Include="DebugDrawingExtension">
-      <HintPath>lib\DebugDrawingExtension.dll</HintPath>
-    </Reference>
     <Reference Include="DebugGUI">
       <HintPath>lib\DebugGUI.dll</HintPath>
     </Reference>
@@ -58,9 +55,6 @@
     <Reference Include="Il2CppSystem">
       <HintPath>lib\Il2CppSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Il2CppSystem.IO.Pipelines">
-      <HintPath>lib\Il2CppSystem.IO.Pipelines.dll</HintPath>
-    </Reference>
     <Reference Include="Il2CppSystem.Net.Http">
       <HintPath>lib\Il2CppSystem.Net.Http.dll</HintPath>
     </Reference>
@@ -78,6 +72,12 @@
     </Reference>
     <Reference Include="Il2CppSystem.Xml">
       <HintPath>lib\Il2CppSystem.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="Linework">
+      <HintPath>lib\Linework.dll</HintPath>
+    </Reference>
+    <Reference Include="MoonSharp">
+      <HintPath>lib\MoonSharp.dll</HintPath>
     </Reference>
     <Reference Include="Open.Nat">
       <HintPath>lib\Open.Nat.dll</HintPath>
@@ -208,11 +208,17 @@
     <Reference Include="UnityEngine.AIModule">
       <HintPath>lib\UnityEngine.AIModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AMDModule">
+      <HintPath>lib\UnityEngine.AMDModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule">
       <HintPath>lib\UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>lib\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>lib\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>lib\UnityEngine.AssetBundleModule.dll</HintPath>
@@ -289,6 +295,12 @@
     <Reference Include="UnityEngine.MarshallingModule">
       <HintPath>lib\UnityEngine.MarshallingModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.MultiplayerModule">
+      <HintPath>lib\UnityEngine.MultiplayerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.NVIDIAModule">
+      <HintPath>lib\UnityEngine.NVIDIAModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>lib\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
@@ -309,6 +321,9 @@
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule">
       <HintPath>lib\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ShaderVariantAnalyticsModule">
+      <HintPath>lib\UnityEngine.ShaderVariantAnalyticsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule">
       <HintPath>lib\UnityEngine.SharedInternalsModule.dll</HintPath>
@@ -331,6 +346,9 @@
     <Reference Include="UnityEngine.TerrainModule">
       <HintPath>lib\UnityEngine.TerrainModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>lib\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.TextCoreFontEngineModule">
       <HintPath>lib\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
     </Reference>
@@ -352,6 +370,12 @@
     <Reference Include="UnityEngine.UIElementsModule">
       <HintPath>lib\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>lib\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>lib\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
       <HintPath>lib\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
     </Reference>
@@ -372,6 +396,9 @@
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule">
       <HintPath>lib\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>lib\UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
       <HintPath>lib\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
